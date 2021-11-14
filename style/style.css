@@ -2,6 +2,7 @@
 
 * {
     font-family: 'Oswald', sans-serif;
+    box-sizing: border-box;
 }
 
 body {
@@ -25,12 +26,16 @@ h1 {
     color: white;
 }
 
-button {
+button, #submit-btn {
     padding: 4px 16px;
     border-style: none;
     border-radius: 6px;
     cursor: pointer;
-    background-color: yellowgreen;
+    background-color: rgb(186, 248, 61);
+}
+
+button:hover, #submit-btn:hover {
+    background-color: rgba(170, 255, 1, 0.452);
 }
 
 button.add-book {
@@ -39,7 +44,36 @@ button.add-book {
 
 /* Main Container */
 .book-container {
+    margin: 0;
+    padding: 48px;
+    background-color: rgb(255, 255, 255);
+    flex: 1;
+}
+
+.book {
+    border: 2px solid rgba(38, 0, 255, 0.575);
+    width: 200px;
+    border-radius: 4px;
+    padding: 10px;
+
     display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+/* Pop up Form */
+
+form {
+    position: absolute;
+    top: 10%;
+    right: 10%;
+    background-color: rgb(189, 191, 255);
+    padding: 16px;
+    border-radius: 8px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
 
 /* Footer */
@@ -48,7 +82,7 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    
+
     padding: 16px 0;
     background-color: black;
     color: white;
