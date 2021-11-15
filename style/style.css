@@ -42,12 +42,21 @@ button.add-book {
     margin-left: auto;
 }
 
+button#remove-book:hover {
+    background-color: rgb(255, 79, 79);
+}
+
 /* Main Container */
 .book-container {
     margin: 0;
     padding: 48px;
     background-color: rgb(255, 255, 255);
     flex: 1;
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 48px;
 }
 
 .book {
@@ -64,14 +73,14 @@ button.add-book {
 /* Pop up Form */
 
 form {
-    position: absolute;
+    position: fixed;
     top: 10%;
-    right: 10%;
+    left: 40%;
     background-color: rgb(189, 191, 255);
     padding: 16px;
     border-radius: 8px;
 
-    display: flex;
+    display: none;
     flex-direction: column;
     gap: 16px;
 }
