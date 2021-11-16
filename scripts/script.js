@@ -27,7 +27,7 @@ function listenReadStatusChecker() {
         const currentElement = e.target;
         if(currentElement.id === 'read-status') {
             const currentBookIndex = currentElement.parentNode.parentNode.getAttribute('data-book-index');
-            myLibrary[currentBookIndex].changeReadStatus
+            myLibrary[currentBookIndex].changeReadStatus();
             displayBooks();
         }
     })
