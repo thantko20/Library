@@ -5,9 +5,8 @@ const exitFormButton = document.getElementById('exit-form');
 const submitButton = document.getElementById('submit-btn');
 
 let myLibrary = loadFromLocalStorage();
-console.log(myLibrary)
-displayBooks();
 
+displayBooks();
 popUpForm();
 removeBook();
 listenReadStatusChecker();
