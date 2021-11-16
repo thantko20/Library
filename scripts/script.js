@@ -101,7 +101,7 @@ function loadFromLocalStorage() {
         let currentObject = parsedLibrary[i];
         if(currentObject) {
 
-            book = new Book(currentObject.title, currentObject.author, currentObject.pages, currentObject.readStatus);
+            let book = new Book(currentObject.title, currentObject.author, currentObject.pages, currentObject.readStatus);
             tmpLibrary.push(book);
         }
     }
