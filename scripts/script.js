@@ -6,8 +6,9 @@ const submitButton = document.getElementById('submit-btn');
 
 let myLibrary = [];
 
-popUpForm()
-addBookToLibrary();
+popUpForm();
+removeBook();
+listenReadStatusChecker();
 
 function Book(title, author, pages, readStatus) {
     this.title = title;
@@ -16,6 +17,23 @@ function Book(title, author, pages, readStatus) {
     this.readStatus = readStatus;
 }
 
+Book.prototype.changeReadStatus = function() {
+    this.readStatus ? this.readStatus = false : this.readStatus = true;
+}
+
+// Change readStatus on mouseclick input
+function listenReadStatusChecker() {
+    document.addEventListener('click', (e) => {
+        const currentElement = e.target;
+        if(currentElement.id === 'read-status') {
+            const currentBookIndex = currentElement.parentNode.parentNode.getAttribute('data-book-index');
+            myLibrary[currentBookIndex].changeReadStatus
+            displayBooks();
+        }
+    })
+}
+
+// Submit the Book
 function addBookToLibrary() {
     submitButton.addEventListener('click', (e) => {
         e.preventDefault();
@@ -31,23 +49,41 @@ function addBookToLibrary() {
 }
 
 function displayBooks() {
-    bookContainer.textContent = '';
+    bookContainer.innerHTML = '';
     for(let i = 0; i < myLibrary.length; i++) {
         const bookCard = document.createElement('div');
         bookCard.className = 'book';
         bookCard.setAttribute('data-book-index', i);
+        const statusChecker = myLibrary[i].readStatus ? 'checked' : '';
 
         bookCard.innerHTML = `<div>Title: ${myLibrary[i].title}</div>
                                 <div>Author: ${myLibrary[i].author}</div>
                                 <div>Pages: ${myLibrary[i].pages}</div>
-                                <div>Read Status: </div>
-                                <button id="remove-book">Remove the Book</button>`
+                                <div>
+                                    <label for="read-status">Read Status: </label>
+                                    <input id="read-status" type="checkbox" name="read-status" ${statusChecker}>
+                                </div>
+                                <button class="remove-book">Remove the Book</button>`
 
         bookContainer.appendChild(bookCard);
     }
 }
 
-// Add Book Button and Remove Book Button
+// Instead of listening for all nodes or elements with
+// `remove-book` className, using event itself is more convenient imo
+function removeBook() {
+    document.addEventListener('click', (e) => {
+        const currentElement = e.target;
+        if(currentElement.className === 'remove-book'){
+            const bookNode = currentElement.parentNode;
+            const bookIndex = bookNode.getAttribute('data-book-index');
+            myLibrary.splice(bookIndex, 1);
+            displayBooks();
+        }
+    })
+}
+
+// Add Book Button
 
 function openForm() {
     addBookButton.addEventListener('click', () => {
@@ -63,5 +99,6 @@ function closeForm() {
 
 function popUpForm() {
     openForm();
+    addBookToLibrary();
     closeForm();
 }
