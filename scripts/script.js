@@ -43,6 +43,11 @@ function addBookToLibrary() {
         const pagesInput = document.getElementById('pages').value;
         const readInput = document.getElementById('read').checked;
 
+        if(titleInput === '' || authorInput === ''){
+            alert("One of the fields is empty!");
+            return;
+        }
+
         let newBook = new Book(titleInput, authorInput, pagesInput, readInput);
         myLibrary.push(newBook);
         saveToLocalStorage();
