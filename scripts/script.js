@@ -4,7 +4,9 @@ const addBookForm = document.querySelector('form');
 const exitFormButton = document.getElementById('exit-form');
 const submitButton = document.getElementById('submit-btn');
 
-let myLibrary = [];
+let myLibrary = loadFromLocalStorage();
+console.log(myLibrary)
+displayBooks();
 
 popUpForm();
 removeBook();
@@ -44,6 +46,7 @@ function addBookToLibrary() {
 
         let newBook = new Book(titleInput, authorInput, pagesInput, readInput);
         myLibrary.push(newBook);
+        saveToLocalStorage();
         displayBooks();
     })
 }
@@ -78,9 +81,32 @@ function removeBook() {
             const bookNode = currentElement.parentNode;
             const bookIndex = bookNode.getAttribute('data-book-index');
             myLibrary.splice(bookIndex, 1);
+            saveToLocalStorage();
             displayBooks();
         }
     })
+}
+
+// Local Storage
+function saveToLocalStorage() {
+    localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
+}
+
+function loadFromLocalStorage() {
+    let parsedLibrary =  localStorage.getItem('myLibrary') ? JSON.parse(localStorage.getItem("myLibrary")) : [];
+    if(parsedLibrary === []) return [];
+
+    let tmpLibrary = [];
+
+    for (let i = 0; i < parsedLibrary.length; i++) {
+        let currentObject = parsedLibrary[i];
+        if(currentObject) {
+
+            book = new Book(currentObject.title, currentObject.author, currentObject.pages, currentObject.readStatus);
+            tmpLibrary.push(book);
+        }
+    }
+    return tmpLibrary;
 }
 
 // Add Book Button
