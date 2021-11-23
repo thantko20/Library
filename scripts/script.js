@@ -11,15 +11,28 @@ popUpForm();
 removeBook();
 listenReadStatusChecker();
 
-function Book(title, author, pages, readStatus) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.readStatus = readStatus;
-}
+// function Book(title, author, pages, readStatus) {
+//     this.title = title;
+//     this.author = author;
+//     this.pages = pages;
+//     this.readStatus = readStatus;
+// }
 
-Book.prototype.changeReadStatus = function() {
-    this.readStatus ? this.readStatus = false : this.readStatus = true;
+// Book.prototype.changeReadStatus = function() {
+//     this.readStatus ? this.readStatus = false : this.readStatus = true;
+// }
+
+class Book {
+    constructor(title, author, pages, readStatus) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.readStatus = readStatus;
+    }
+
+    changeReadStatus = () => {
+        this.readStatus = !this.readStatus;
+    }
 }
 
 // Change readStatus on mouseclick input
