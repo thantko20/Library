@@ -1,8 +1,22 @@
 const addBookButton = document.querySelector('.add-book');
 const bookContainer = document.querySelector('.book-container');
-const addBookForm = document.querySelector('form');
+
 const exitFormButton = document.getElementById('exit-form');
 const submitButton = document.getElementById('submit-btn');
+const addBookForm = document.getElementsByTagName('form')[0];
+
+class Book {
+    constructor(title, author, pages, readStatus) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.readStatus = readStatus;
+    }
+
+    changeReadStatus = () => {
+        this.readStatus = !this.readStatus;
+    }
+}
 
 let myLibrary = loadFromLocalStorage();
 
@@ -22,19 +36,6 @@ listenReadStatusChecker();
 //     this.readStatus ? this.readStatus = false : this.readStatus = true;
 // }
 
-class Book {
-    constructor(title, author, pages, readStatus) {
-        this.title = title;
-        this.author = author;
-        this.pages = pages;
-        this.readStatus = readStatus;
-    }
-
-    changeReadStatus = () => {
-        this.readStatus = !this.readStatus;
-    }
-}
-
 // Change readStatus on mouseclick input
 function listenReadStatusChecker() {
     document.addEventListener('click', (e) => {
@@ -49,17 +50,12 @@ function listenReadStatusChecker() {
 
 // Submit the Book
 function addBookToLibrary() {
-    submitButton.addEventListener('click', (e) => {
+    addBookForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        const titleInput = document.getElementById('title').value;
-        const authorInput = document.getElementById('author').value;
-        const pagesInput = document.getElementById('pages').value;
+        const titleInput = addBookForm.title.value;
+        const authorInput = addBookForm.author.value;
+        const pagesInput = addBookForm.pages.value;
         const readInput = document.getElementById('read').checked;
-
-        if(titleInput === '' || authorInput === ''){
-            alert("One of the fields is empty!");
-            return;
-        }
 
         let newBook = new Book(titleInput, authorInput, pagesInput, readInput);
         myLibrary.push(newBook);
