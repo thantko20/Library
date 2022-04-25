@@ -1,5 +1,7 @@
 let library = [];
 const addBookBtn = document.querySelector('.add-book-btn');
+const form = document.querySelector('form');
+const closeFormBtn = document.querySelector('.close-form');
 const bookShelf = document.querySelector('.books-container');
 
 // BOOK OBJECT
@@ -67,23 +69,11 @@ Book.prototype.render = function() {
   return wrapper;
 }
 
-const bookInfo = {
-  title: 'Lord of the Rings: The Fellowship of the Ring',
-  author: 'J. R. R. Tolkien',
-  pages: '479',
-  readState: true
+function addBook(bookInfo) {
+  const book = new Book(bookInfo);
+  library.push(book);
+  renderShelf();
 }
-
-const book1 = new Book(bookInfo);
-const book2 = new Book(bookInfo);
-const book3 = new Book(bookInfo);
-const book4 = new Book(bookInfo);
-
-library.push(book2);
-library.push(book3);
-library.push(book4);
-
-renderShelf();
 
 function cleanRenderShelf() {
   while (bookShelf.firstChild) {
@@ -98,3 +88,41 @@ function renderShelf () {
     bookShelf.appendChild(bookEl);
   })
 }
+
+function openForm() {
+  form.className = 'active';
+}
+
+function closeForm() {
+  form.className = '';
+}
+
+renderShelf();
+
+const bookInfo = {
+  title: 'Lord of the Rings: The Fellowship of the Ring',
+  author: 'J. R. R. Tolkien',
+  pages: '479',
+  readState: true
+}
+
+const book1 = new Book(bookInfo);
+addBook(bookInfo);
+
+addBookBtn.addEventListener('click', openForm);
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  const bookInfo = {
+    title: form.title.value,
+    author: form.author.value,
+    pages: form.pages.value,
+    readState: form.read.checked
+  }
+
+  addBook(bookInfo);
+  closeForm();
+  renderShelf();
+})
+
+closeFormBtn.addEventListener('click', closeForm);
