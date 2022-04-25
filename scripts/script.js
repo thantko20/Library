@@ -42,6 +42,7 @@ Book.prototype.render = function() {
   delBookBtn.addEventListener('click', () => {
     const bookId = library.indexOf(this);
     library.splice(bookId, 1);
+    renderShelf();
   })
 
   wrapper.append(
@@ -66,10 +67,16 @@ const book1 = new Book(bookInfo);
 bookShelf.appendChild(book1.render())
 library.push(book1);
 
+function cleanRenderShelf() {
+  while (bookShelf.firstChild) {
+    bookShelf.firstChild.remove();
+  }
+}
 
-// function renderShelf () {
-//   library.forEach((book) => {
-//     const bookEl = book.render();
-//     bookShelf.appendChild(bookEl);
-//   })
-// }
+function renderShelf () {
+  cleanRenderShelf();
+  library.forEach((book) => {
+    const bookEl = book.render();
+    bookShelf.appendChild(bookEl);
+  })
+}
