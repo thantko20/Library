@@ -14,6 +14,38 @@ Book.prototype.changeReadState = function() {
   this.readState = !this.readState;
 }
 
+Book.prototype.render = function() {
+  const wrapper = document.createElement('div'); // this will be the container
+  wrapper.className = 'book';
+
+  const title = document.createElement('div');
+  title.className = 'book-title';
+  title.textContent = this.title;
+
+  const author = document.createElement('div');
+  author.className = 'book-author';
+  author.textContent = this.author;
+
+  const pages = document.createElement('div');
+  pages.className = 'book-pages';
+  pages.textContent = this.pages;
+
+  const readStateCheckbox = document.createElement('input');
+  readStateCheckbox.type = 'checkbox';
+  readStateCheckbox.checked = this.readState;
+  readStateCheckbox.className = 'read-state';
+  readStateCheckbox.addEventListener('click', () => this.changeReadState());
+
+  wrapper.append(
+    title,
+    author,
+    pages,
+    readStateCheckbox
+  )
+
+  return wrapper;
+}
+
 const bookInfo = {
   title: 'Lord of the Rings: The Fellowship of the Ring',
   author: 'J. R. R. Tolkien',
@@ -22,4 +54,5 @@ const bookInfo = {
 }
 
 const book1 = new Book(bookInfo);
+bookShelf.appendChild(book1.render())
 library.push(book1);
