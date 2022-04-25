@@ -36,11 +36,20 @@ Book.prototype.render = function() {
   readStateCheckbox.className = 'read-state';
   readStateCheckbox.addEventListener('click', () => this.changeReadState());
 
+  const delBookBtn = document.createElement('button');
+  delBookBtn.className = 'del-book';
+  delBookBtn.textContent = 'Delete';
+  delBookBtn.addEventListener('click', () => {
+    const bookId = library.indexOf(this);
+    library.splice(bookId, 1);
+  })
+
   wrapper.append(
     title,
     author,
     pages,
-    readStateCheckbox
+    readStateCheckbox,
+    delBookBtn
   )
 
   return wrapper;
@@ -56,3 +65,11 @@ const bookInfo = {
 const book1 = new Book(bookInfo);
 bookShelf.appendChild(book1.render())
 library.push(book1);
+
+
+// function renderShelf () {
+//   library.forEach((book) => {
+//     const bookEl = book.render();
+//     bookShelf.appendChild(bookEl);
+//   })
+// }
