@@ -24,11 +24,11 @@ Book.prototype.render = function() {
 
   const author = document.createElement('div');
   author.className = 'book-author';
-  author.textContent = this.author;
+  author.innerHTML = `Written by <strong>${this.author}</strong>`;
 
   const pages = document.createElement('div');
   pages.className = 'book-pages';
-  pages.textContent = this.pages;
+  pages.innerHTML = `<strong>${this.pages} Pages`;
 
   const readStateCheckbox = document.createElement('input');
   readStateCheckbox.type = 'checkbox';
