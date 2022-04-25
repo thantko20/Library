@@ -2,6 +2,7 @@
 
 :root {
   --main-theme: #f43f5e;
+  --secondary-theme: #111;
 }
 
 * {
@@ -10,6 +11,22 @@
 
 html {
   font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+}
+
+button {
+  font-family: inherit;
+  font-weight: 600;
+  color: #fff;
+  background-color: var(--secondary-theme);
+  border: 3.5px solid var(--secondary-theme);
+  border-radius: 4px;
+  padding: 8px 24px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: transparent;
 }
 
 body {
@@ -19,4 +36,22 @@ body {
 
   display: grid;
   grid-template-rows: auto 1fr auto;
+  grid-template-columns: 1fr;
+}
+
+header {
+  color: #eee;
+  padding: 12px 60px;
+  background-color: var(--main-theme);
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.add-book-btn {
+  margin-left: auto;
 }
