@@ -28,13 +28,15 @@ button {
 label {
   display: block;
   margin-bottom: 4px;
+  font-size: 1.1rem;
 }
 
 button:hover {
-  background-color: transparent;
+  background-color: var(--main-theme);
 }
 
 body {
+  position: relative;
   padding: 0;
   margin: 0;
   min-height: 100vh;
@@ -89,10 +91,6 @@ header {
   font-weight: 600;
 }
 
-.del-book:hover {
-  background-color: var(--main-theme);
-}
-
 input[type="checkbox"] {
   appearance: none;
   position: relative;
@@ -119,4 +117,58 @@ input[type="checkbox"]::before {
 input[type="checkbox"]:checked::before {
   transform: translateX(1.3rem);
   background-color: #22c55e;
+}
+
+form h2 {
+  margin: 0;
+  padding: 0;
+}
+
+form label {
+  font-style: italic;
+  color: #444;
+}
+
+form {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-100%, -50%);
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  transition: .3s ease-in;
+}
+
+form.active {
+  opacity: 1;
+  width: 90%;
+  max-width: 400px;
+  padding: 12px 24px;
+  border-radius: 8px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+}
+
+.close-form {
+  cursor: pointer;
+}
+
+.row:nth-child(1) {
+  display: flex;
+  justify-content: space-between;
+}
+
+.row input[type="text"],
+.row input[type="number"] {
+  width: 100%;
+  padding: 8px 12px;
+}
+
+form button {
+  align-self: flex-start;
 }

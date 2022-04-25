@@ -8,6 +8,30 @@
   <title>Library</title>
 </head>
 <body>
+  <form action="#">
+    <div class="row">
+      <h2>Book Info</h2>
+      <img src="assets/close-box.png" alt="" class="close-form">
+    </div>
+    <div class="row">
+      <label for="title">Title</label>
+      <input type="text" id="title" name="title" required>
+    </div>
+    <div class="row">
+      <label for="author">Author</label>
+      <input type="text" id="author" name="author" required>
+    </div>
+    <div class="row">
+      <label for="pages">Pages</label>
+      <input type="number" id="pages" name="pages" min="1" required>
+    </div>
+    <div class="row">
+      <label for="read">Read State</label>
+      <input type="checkbox" id="read" name="read">
+    </div>
+
+    <button type="submit">Add</button>
+  </form>
   <header>
     <div class="logo">Library</div>
     <button class="add-book-btn" title="Add book to the collection">Add Book</button>
