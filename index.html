@@ -4,29 +4,16 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style/style.css">
+  <!-- <link rel="stylesheet" href="style/style.css"> -->
   <title>Library</title>
 </head>
 <body>
-  <div class="nav-bar">
-    <h1>Library</h1>
-    <button class="add-book">Add Book</button>
-  </div>
+  <header>
+    <div class="logo"></div>
+    <button class="add-book-btn" title="Add book to the collection"><span>+</span>Add Book</button>
+  </header>
 
-  <div class="book-container"></div>
-
-  <form action="/">
-    <label for="title">Title: </label>
-    <input id="title" type="text" placeholder="Enter title of the book" name="title" required minlength="2" maxlength="20">
-    <label for="author">Author: </label>
-    <input id="author" type="text" placeholder="Enter author of the book" name="author" required>
-    <label for="pages">Pages: </label>
-    <input id="pages" type="number" placeholder="Enter number of pages of the book" name="pages" required min="1">
-    <label for="read">Have you read the book?: </label>
-    <input id="read" type="checkbox" name="read">
-    <button type="submit" id="submit-btn">Submit</button>
-    <button id="exit-form" type="button">Exit the form</button>
-  </form>
+  <div class="books-container"></div>
 
   <footer>Made by Thant Ko Zaw</footer>
 </body>
